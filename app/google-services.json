@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "173965243958",
+    "project_id": "cripto-favorite",
+    "storage_bucket": "cripto-favorite.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173965243958:android:5fe70afc889e4812588a97",
+        "android_client_info": {
+          "package_name": "com.app.criptofavorite"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy1DzgrW6G5-6Vp6mcJx14uwfFD37y93o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
