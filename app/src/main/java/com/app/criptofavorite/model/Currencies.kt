@@ -6,15 +6,12 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "currencies")
 class Currencies {
-    // source, moeda {name, buy, sell, variation}
+    // id, "name": "Dollar", "buy": 4.9028, "sell": 4.9028, "variation": 0.004
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
     var id: Int = 0
-
-    var source: String = ""
-    var name: String = ""
-    var buy: String = ""
-    var sell: String = ""
-    var variation: String = ""
+    val name: String = ""
+    val buy: Double = 0.0
+    val sell: Double = 0.0
+    val variation: Double = 0.0
 
 }
