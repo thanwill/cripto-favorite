@@ -1,4 +1,4 @@
-package com.app.criptofavorite.ui.dashboard
+package com.app.criptofavorite.view.ui.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
