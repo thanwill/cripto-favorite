@@ -82,17 +82,6 @@ class LoginActivity : AppCompatActivity() {
 
             progressBar.visibility = View.VISIBLE
 
-            // snackbar para mostrar o progresso da autenticação na cor verde
-            val snackbar = Snackbar.make(
-                binding.root,
-                "Autenticando",
-                Snackbar.LENGTH_INDEFINITE
-            )
-
-
-
-            snackbar.show()
-
             auth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
@@ -109,6 +98,7 @@ class LoginActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT,
                         ).show()
                         updateUI(null)
+                        progressBar.visibility = View.GONE
                     }
                 }
 
