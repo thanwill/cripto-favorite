@@ -39,6 +39,9 @@ class NotificationsFragment : Fragment() {
             val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
 
+            // Exibe mensagem de sucesso ao usuário
+            //Toast.makeText(activity, "Logout realizado com sucesso!", Toast.LENGTH_SHORT).show()
+
             // Finaliza a tela atual
             activity?.finish()
 

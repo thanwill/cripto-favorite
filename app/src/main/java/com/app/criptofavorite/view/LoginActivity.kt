@@ -8,9 +8,11 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.app.criptofavorite.R
 import com.app.criptofavorite.databinding.ActivityLoginBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -30,6 +32,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         // Initialize Firebase Auth
         auth = Firebase.auth
+
+        var progressBar = binding.loading
 
 
         // Verifica se o usuário já está logado e redireciona para a página principal
@@ -75,6 +79,19 @@ class LoginActivity : AppCompatActivity() {
                 ).show()
                 return@setOnClickListener
             }
+
+            progressBar.visibility = View.VISIBLE
+
+            // snackbar para mostrar o progresso da autenticação na cor verde
+            val snackbar = Snackbar.make(
+                binding.root,
+                "Autenticando",
+                Snackbar.LENGTH_INDEFINITE
+            )
+
+
+
+            snackbar.show()
 
             auth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(this) { task ->
