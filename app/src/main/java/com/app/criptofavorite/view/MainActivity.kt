@@ -1,21 +1,14 @@
-package com.app.criptofavorite
+package com.app.criptofavorite.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.app.criptofavorite.R
 import com.app.criptofavorite.databinding.ActivityMainBinding
-import com.app.criptofavorite.model.Finance
-import com.app.criptofavorite.repository.remote.FinanceClient
-import com.app.criptofavorite.view.adapter.CurrencyAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
@@ -42,10 +35,6 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-
-
-
-        /* navigation bar */
     }
 
 
