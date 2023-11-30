@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 abstract class FinanceClient {
     companion object{
 
-        private const val BASE_URL = "https://api.hgbrasil.com"
+        private const val BASE_URL = "https://api.hgbrasil.com/"
         private lateinit var INSTANCE : Retrofit
 
         // Função da classe: Criar uma instância do Retrofit
@@ -24,6 +24,7 @@ abstract class FinanceClient {
             return INSTANCE
         }
 
+        // cria uma instância do serviço FinanceService para realizar a requisição
         fun createService() : FinanceService {
             return getInstance().create(FinanceService::class.java)
         }

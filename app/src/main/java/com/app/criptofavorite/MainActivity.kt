@@ -1,24 +1,15 @@
 package com.app.criptofavorite
 
-import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.app.criptofavorite.databinding.ActivityMainBinding
-import com.app.criptofavorite.model.FinanceResponse
+import com.app.criptofavorite.model.Finance
 import com.app.criptofavorite.repository.remote.FinanceClient
-import com.app.criptofavorite.repository.remote.FinanceService
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.app.criptofavorite.view.adapter.CurrencyAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,50 +21,42 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val db = Firebase.firestore
+        var adapter = CurrencyAdapter()
 
-        // Create a new user with a first and last name
-        val user = hashMapOf(
-            "first" to "Ada",
-            "last" to "Lovelace",
-            "born" to 1815
-        )
-
-        // Add a new document with a generated ID
-        db.collection("users")
-            .add(user)
-            .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
-            }
-
-        val service = FinanceClient.createService() // Cria a instância do Retrofit
-        val call = service.getFinance() // Chama o método para obter os dados
-
-        call.enqueue(object : Callback<FinanceResponse> {
-            @SuppressLint("NotifyDataSetChanged")
-            override fun onResponse(call: Call<FinanceResponse>, response: Response<FinanceResponse>) {
+        val service = FinanceClient.createService()
+        val call = service.getExchangeRates()
+        call.enqueue(object : Callback<Finance> {
+            override fun onResponse(
+                call: Call<Finance>,
+                response: Response<Finance>
+            ) {
                 if (response.isSuccessful) {
-                    var financeResponse = response.body()
+                    val body = response.body()
+                    println("Moedas: ${body?.results?.currencies}")
 
-                    if(financeResponse != null){
-                        Log.d(TAG, "onResponse: ${financeResponse.results}")
+                    if (body != null) {
+                        adapter.addCurrency(body.results.currencies.USD)
+                        adapter.addCurrency(body.results.currencies.EUR)
+                        adapter.addCurrency(body.results.currencies.GBP)
+                        adapter.addCurrency(body.results.currencies.ARS)
+                        adapter.addCurrency(body.results.currencies.CAD)
+                        adapter.addCurrency(body.results.currencies.AUD)
+                        adapter.addCurrency(body.results.currencies.JPY)
+                        adapter.addCurrency(body.results.currencies.CNY)
+                        adapter.addCurrency(body.results.currencies.BTC)
                     }
-                } else {
-                    // Tratamento para resposta não bem-sucedida
+
+                    binding.recyclerView.adapter = adapter // RecyclerView
+
                 }
             }
 
-            override fun onFailure(call: Call<FinanceResponse>, t: Throwable) {
-                val error = t.message
-                // Tratamento de falha
+            override fun onFailure(call: Call<Finance>, t: Throwable) {
+                println("Falha na requisição: ${t.message}")
             }
         })
 
-
-        // navigation bar
+        /* navigation bar
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
@@ -86,5 +69,23 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        Código da XML
+
+        <fragment
+        android:id="@+id/nav_host_fragment_activity_main"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@id/nav_view"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/mobile_navigation" />
+         */
     }
+
+
 }
+
