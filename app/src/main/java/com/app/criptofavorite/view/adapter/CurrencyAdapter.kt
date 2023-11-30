@@ -1,14 +1,15 @@
 package com.app.criptofavorite.view.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.criptofavorite.R
 import com.app.criptofavorite.model.Currency
 
-class CurrencyAdapter : RecyclerView.Adapter<CurrencyViewHolder>() {
+class CurrencyAdapter() : RecyclerView.Adapter<CurrencyViewHolder>() {
 
-    private val currency = ArrayList<Currency>()
+    private val currency = mutableListOf<Currency>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrencyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_finance, parent, false)
