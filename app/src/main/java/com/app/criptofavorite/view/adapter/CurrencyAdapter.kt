@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.criptofavorite.R
 import com.app.criptofavorite.model.Currency
 
-class CurrencyAdapter() : RecyclerView.Adapter<CurrencyViewHolder>() {
+class CurrencyAdapter : RecyclerView.Adapter<CurrencyViewHolder>() {
 
-    private val currency = mutableListOf<Currency>()
+    private val currencies = mutableListOf<Currency>() // Renomeie para evitar confusão
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrencyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_finance, parent, false)
@@ -17,17 +17,23 @@ class CurrencyAdapter() : RecyclerView.Adapter<CurrencyViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CurrencyViewHolder, position: Int) {
-        val currency = currency[position]
+        val currency = currencies[position]
         holder.name.text = currency.name
-
+        holder.currencyBuyValue.text = "%.2f".format(currency.buy).replace('.', ',')
     }
 
     override fun getItemCount(): Int {
-        return currency.size
+        return currencies.size
     }
 
     fun addCurrency(currency: Currency) {
-        this.currency.add(currency)
+        this.currencies.add(currency)
+        notifyDataSetChanged()
+    }
+
+    fun setCurrencies(newCurrencies: List<Currency>) {
+        this.currencies.clear()
+        this.currencies.addAll(newCurrencies)
         notifyDataSetChanged()
     }
 }
