@@ -7,9 +7,25 @@
     android:padding="10dp"
     app:layoutDescription="@xml/layout_finance_scene">
 
-    <TextView
-        android:id="@+id/textCurrencie"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Currencies" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textCurrency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Currencies" />
+
+        <TextView
+            android:id="@+id/textCurrencybuy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="R$ 0,00" />
+
+    </LinearLayout>
 </LinearLayout>

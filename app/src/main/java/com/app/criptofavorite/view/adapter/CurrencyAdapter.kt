@@ -19,6 +19,11 @@ class CurrencyAdapter() : RecyclerView.Adapter<CurrencyViewHolder>() {
     override fun onBindViewHolder(holder: CurrencyViewHolder, position: Int) {
         val currency = currency[position]
         holder.name.text = currency.name
+        //holder.buy.text = currency.buy.toString()
+
+        // Forma ta o buy para duas casas decimais e com o símbolo de $ e usa vírgula para separar os milhares
+        val buy = String.format("%.2f", currency.buy).replace(".", ",")
+        holder.buy.text = "$ $buy"
 
     }
 
