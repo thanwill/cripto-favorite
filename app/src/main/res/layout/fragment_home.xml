@@ -15,25 +15,30 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.161"
+        app:layout_constraintHorizontal_bias="0.124"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.059" />
+        app:layout_constraintVertical_bias="0.024" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="359dp"
-        android:layout_height="500dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginBottom="56dp"
+    <ScrollView
+        android:layout_width="371dp"
+        android:layout_height="512dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="19dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-    </androidx.recyclerview.widget.RecyclerView>
-
+        </androidx.recyclerview.widget.RecyclerView>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
