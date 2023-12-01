@@ -33,13 +33,11 @@ class CadastroActivity : AppCompatActivity() {
         val newsletter = binding.checkboxWhatsappUsuario.isChecked
 
 
-
         binding.salvar.setOnClickListener {
 
             usuario = User(
                 name = name.toString(),
                 email = email.toString(),
-                password = password.toString(),
                 phone = phone.toString(),
                 newsletter = newsletter
             )
